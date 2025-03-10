@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/alerts")
+@RequestMapping("/api/alerts")
 public class AlertController {
     private final AlertService alertService;
 
@@ -20,15 +20,29 @@ public class AlertController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createAlert(@RequestBody Map<String, String> request) {
+        System.out.println("🔍 Datos recibidos en el backend: " + request);
+
         try {
             String title = request.get("title");
             String description = request.get("description");
             String location = request.get("location");
-            String alertType = request.get("alertType");
+            String alertType = request.getOrDefault("alertType", "general");
 
+            // Validar que todos los campos estén presentes
+            if (title == null || title.isEmpty() ||
+                    description == null || description.isEmpty() ||
+                    location == null || location.isEmpty() ||
+                    alertType == null || alertType.isEmpty()) {
+                return ResponseEntity.badRequest().body(Map.of("error", "Todos los campos son obligatorios"));
+            }
+
+            // Crear la alerta sin imagen
             Alert alert = alertService.createAlert(title, description, location, alertType);
+
             return ResponseEntity.ok(Map.of("message", "Alerta creada con éxito", "alertId", alert.getId()));
+
         } catch (Exception e) {
+            System.out.println("❌ Error en el servidor: " + e.getMessage());
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }

@@ -16,6 +16,9 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Column(nullable = false)
     private String password;
 
@@ -26,4 +29,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles;
+
+    @Column(nullable = false)
+    private boolean isVolunteer = false; // Campo para diferenciar voluntarios
+
+    public boolean hasRole(RoleType roleType) {
+        return roles.stream().anyMatch(role -> role.getName() == roleType);
+    }
+
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/volunteers")
+@RequestMapping("/api/volunteers")
 public class VolunteerController {
     private final VolunteerService volunteerService;
 

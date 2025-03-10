@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -12,24 +12,12 @@
 	<artifactId>proyectos2-rescuelink</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>proyectos2-rescuelink</name>
-	<description>Demo project for Spring Boot</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<description>API REST para RescueLink</description>
+
 	<properties>
 		<java.version>17</java.version>
-		<vaadin.version>24.6.5</vaadin.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,11 +27,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-spring-boot-starter</artifactId>
-		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -60,17 +43,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.vaadin</groupId>
-				<artifactId>vaadin-bom</artifactId>
-				<version>${vaadin.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -100,43 +72,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>production</id>
-			<dependencies>
-				<dependency>
-					<groupId>com.vaadin</groupId>
-					<artifactId>vaadin-core</artifactId>
-					<exclusions>
-						<exclusion>
-							<groupId>com.vaadin</groupId>
-							<artifactId>vaadin-dev</artifactId>
-						</exclusion>
-					</exclusions>
-				</dependency>
-
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.vaadin</groupId>
-						<artifactId>vaadin-maven-plugin</artifactId>
-						<version>${vaadin.version}</version>
-						<executions>
-							<execution>
-								<id>frontend</id>
-								<phase>compile</phase>
-								<goals>
-									<goal>prepare-frontend</goal>
-									<goal>build-frontend</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 </project>

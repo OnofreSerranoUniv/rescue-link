@@ -19,18 +19,19 @@ public class Alert {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private String location;
 
     @Column(nullable = false)
+    private String alertType;
+
+    @Column(nullable = false)
+    private boolean active = true;
+
+    @Column(nullable = false)
     private LocalDateTime timestamp;
 
-    @Column(nullable = false)
-    private String alertType; // Ejemplo: "Terremoto", "Inundación", "Incendio"
-
-    @Column(nullable = false)
-    private boolean active;
 }
